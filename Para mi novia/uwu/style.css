@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;600&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: radial-gradient(circle at top left, #ff9a9e, #fad0c4);
+  font-family: 'Poppins', sans-serif;
+  color: #4a2c33;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background: rgba(255 255 255 / 0.85);
+  border-radius: 25px;
+  padding: 30px 35px;
+  max-width: 320px;
+  width: 90vw;
+  box-shadow: 0 12px 25px rgba(255, 105, 180, 0.3);
+  position: relative;
+  text-align: center;
+}
+h1 {
+  font-family: 'Sacramento', cursive;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #d81e5b;
+  text-shadow: 2px 2px 5px #f8b1c2;
+}
+p.message {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #81263d;
+  line-height: 1.4;
+}
+button {
+  background: #d81e5b;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(216,30,91,0.5);
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #a11b46;
+}
+.hidden-message {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #b32758;
+  font-weight: 600;
+  display: none;
+}
+
+/* Floating hearts container */
+.hearts {
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  z-index: 0;
+}
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #d81e5b;
+  transform: rotate(-45deg);
+  animation: floatUp ease-in forwards;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 1px #bb2965);
+}
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #d81e5b;
+  border-radius: 50%;
+}
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+.heart::after {
+  top: 0;
+  left: 10px;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(-45deg);
+  }
+  20% {
+    opacity: 0.9;
+  }
+  40% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-350px) rotate(-45deg);
+  }
+}

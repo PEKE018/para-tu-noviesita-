@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Para Mi Amor - Azul y Violeta</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@300;600&display=swap');
+    
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #4b6cb7 0%, #8a4db0 100%);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #EDE7F6;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      padding: 15px;
+      max-height: 600px;
+    }
+
+    #container {
+      position: relative;
+      max-width: 360px;
+      width: 90vw;
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 22px;
+      padding: 30px 28px 38px 28px;
+      box-shadow: 0 0 25px rgba(138, 77, 176, 0.7);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      font-weight: 700;
+      color: #ddd9ff;
+      margin-bottom: 12px;
+      text-shadow: 0 3px 10px rgba(138, 77, 176, 0.8);
+      cursor: default;
+      letter-spacing: 0.07em;
+      user-select: none;
+    }
+
+    p {
+      font-weight: 300;
+      font-size: 1.2rem;
+      line-height: 1.65;
+      margin-bottom: 34px;
+      color: #d6cbffcc;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      user-select: text;
+    }
+
+    #love-button {
+      font-size: 4.2rem;
+      color: #b290fc;
+      cursor: pointer;
+      filter: drop-shadow(0 0 7px #b290fcaa);
+      user-select: none;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    #love-button:hover {
+      transform: scale(1.25) rotate(-7deg);
+      filter: drop-shadow(0 0 14px #c9a7ffcc);
+    }
+    #love-button:active {
+      filter: drop-shadow(0 0 6px #a074f3cc);
+      transform: scale(1) rotate(0);
+    }
+
+    #message {
+      margin-top: 28px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #ebe7ffcc;
+      min-height: 3em;
+      opacity: 0;
+      transition: opacity 0.75s ease;
+      text-shadow: 0 0 8px #dcd8fff5;
+      user-select: none;
+    }
+    #message.show {
+      opacity: 1;
+    }
+
+    /* Floating bubbles animation */
+    #bubbles-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -50px;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation-timing-function: linear;
+      filter: drop-shadow(0 0 6px #a08affaa);
+      user-select: none;
+    }
+
+    @media (max-width: 400px) {
+      h1 {
+        font-size: 3rem;
+      }
+      #love-button {
+        font-size: 3.2rem;
+      }
+      #container {
+        padding: 26px 20px 34px 20px;
+        max-width: 95vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="bubbles-container"></div>
+  <div id="container">
+    <h1>Para Mi Amor</h1>
+    <p>Cada momento contigo es un sueño azul-violeta que ilumina mi alma. Gracias por ser mi estrella brillante.</p>
+    <div id="love-button" title="Haz clic en mí">&#10084;&#65039;</div>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    (function() {
+      const loveBtn = document.getElementById('love-button');
+      const message = document.getElementById('message');
+      const bubblesContainer = document.getElementById('bubbles-container');
+
+      const messages = [
+        'Eres la luz que guía mi camino.',
+        'Contigo, el mundo es más hermoso.',
+        'Cada latido es para ti.',
+        'Nuestro amor pinta cielos de violeta.',
+        'Gracias por llenar mis días de magia.',
+        'Eres mi melodía favorita.',
+        'En tus ojos encuentro mi paz.',
+        'Nuestro amor no conoce fronteras.'
+      ];
+
+      let index = 0;
+      loveBtn.addEventListener('click', () => {
+        message.textContent = messages[index];
+        message.classList.add('show');
+        index = (index + 1) % messages.length;
+
+        // Heart pop animation
+        loveBtn.style.transition = 'transform 0.15s ease';
+        loveBtn.style.transform = 'scale(1.5)';
+        setTimeout(() => {
+          loveBtn.style.transform = 'scale(1)';
+        }, 150);
+      });
+
+      // Create floating bubbles
+      function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        const size = Math.random() * 20 + 15; // 15 to 35 px diameter
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        bubble.style.left = (Math.random() * 100) + 'vw';
+
+        // Gradient violet-blueish colors for bubbles
+        const colors = [
+          'rgba(138, 77, 176, 0.15)',
+          'rgba(75, 108, 183, 0.15)',
+          'rgba(138, 77, 176, 0.12)',
+          'rgba(75, 108, 183, 0.1)'
+        ];
+        bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+        const duration = 8000 + Math.random() * 5000;
+        bubble.style.animationDuration = duration + 'ms';
+
+        // Animate bubble upwards with slight horizontal sway
+        const keyframes = [
+          { transform: `translate(0, 0) scale(1)`, opacity: 0.4 },
+          { transform: `translate(${Math.random() * 50 - 25}px, -600px) scale(1.3)`, opacity: 0 }
+        ];
+        bubble.animate(keyframes, {
+          duration: duration,
+          easing: 'ease-out',
+          fill: 'forwards'
+        });
+
+        bubblesContainer.appendChild(bubble);
+        setTimeout(() => {
+          bubble.remove();
+        }, duration + 1000);
+      }
+
+      setInterval(createBubble, 450); // new bubble every 450ms
+
+    })();
+  </script>
+</body>
+</html>
+
