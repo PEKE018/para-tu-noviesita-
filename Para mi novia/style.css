@@ -1,0 +1,205 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #fceabb 0%, #f8b5a5 100%); 
+    font-family: 'Montserrat', sans-serif; /* Cambiamos a una fuente más moderna */
+    color: #4a4a4a;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Importar fuente de Google Fonts si la quieres usar */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+
+#main-wrapper { /* Contenedor para la carta y el juego */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    width: 100%;
+    gap: 30px; /* Espacio entre la carta y el juego */
+}
+
+#card-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    /* Aseguramos que la altura se ajuste al contenido, incluso con transiciones */
+    transition: all 0.5s ease-in-out; 
+    position: relative; /* Para posibles animaciones */
+}
+
+h1 {
+    color: #d63384; 
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+h2 {
+    color: #d63384;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/* Estilo unificado para los botones de acción */
+.action-button {
+    background: #ff6b81; 
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    margin-top: 15px;
+    border-radius: 50px;
+    font-size: 1.1em; 
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.action-button:hover {
+    background-color: #e55a71;
+    transform: translateY(-2px); /* Ligeramente hacia arriba */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+#reveal-button {
+    font-size: 1.8em; 
+    padding: 18px 30px; /* Un poco más grande para destacar */
+}
+
+/* Clases para ocultar/mostrar contenido dentro de un mismo contenedor */
+.secret-content {
+    opacity: 0;
+    max-height: 0; /* Usamos max-height para una transición más suave con contenido variable */
+    overflow: hidden;
+    transition: opacity 1s ease-in-out, max-height 0.8s ease-in-out;
+    padding: 0; 
+}
+
+.secret-content.visible {
+    opacity: 1;
+    max-height: 500px; /* Un valor lo suficientemente grande para el contenido */
+    padding-top: 20px; 
+    padding-bottom: 20px;
+}
+
+/* Estilos de los mensajes */
+#card-content p {
+    font-style: italic;
+    line-height: 1.6;
+    margin-top: 20px;
+    color: #666;
+}
+
+.signature {
+    margin-top: 30px;
+    font-weight: bold;
+    color: #d63384;
+    font-size: 1.1em;
+}
+
+/* --- NUEVAS CLASES PARA SECCIONES COMPLETAS --- */
+.hidden-section {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    margin-top: 0;
+    transition: opacity 1s ease-in-out, height 0.8s ease-in-out, margin-top 0.8s ease-in-out;
+}
+
+.visible-section {
+    opacity: 1;
+    height: auto; /* Dejar que el contenido defina la altura */
+    margin-top: 30px; /* Restaurar el margen */
+    transition: opacity 1s ease-in-out, height 0.8s ease-in-out, margin-top 0.8s ease-in-out;
+    background-color: white; /* El juego también tendrá un fondo blanco */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-align: center;
+}
+
+/* --- ESTILOS DEL JUEGO (refinados) --- */
+#game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 90px); 
+    grid-template-rows: repeat(3, 90px);
+    gap: 12px; 
+    margin: 25px auto; /* Más margen */
+    width: min-content;
+}
+
+.game-cell {
+    background-color: #ffb5c5; 
+    background-image: linear-gradient(135deg, #ffd3e0 0%, #ff9aa8 100%); 
+    border: 3px solid #e55a71; 
+    border-radius: 15px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em; /* Emoji más grande */
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1); 
+}
+
+.game-cell:hover {
+    transform: translateY(-3px) scale(1.02); 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.opened {
+    background-color: #f0f0f0 !important; 
+    background-image: none !important; 
+    border-color: #ccc !important;
+    cursor: default;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1); 
+    transform: none; 
+}
+
+#game-message {
+    margin-top: 25px; /* Más margen */
+    font-size: 1.2em; /* Más grande */
+    font-weight: bold;
+    color: #d63384;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    #card-container, .visible-section {
+        padding: 25px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.4em;
+    }
+    .action-button {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+    #game-grid {
+        grid-template-columns: repeat(3, 80px);
+        grid-template-rows: repeat(3, 80px);
+        gap: 10px;
+    }
+    .game-cell {
+        font-size: 2em;
+    }
+}
