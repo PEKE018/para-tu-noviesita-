@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-wrapper"> <div id="card-container">
+            <h1>¡hola, mi ammaaor!</h1>
+            
+            <div id="teaser">
+                <p>Hay un mensaje especial para vos. ¡Tocá el corazón para abrirlo!</p>
+                <button id="reveal-button" class="action-button">
+                    ❤️
+                </button>
+            </div>
+
+            <div id="card-content" class="secret-content hidden"> 
+                <h2>mi mensaje para vos</h2>
+                <p id="the-message">
+                    "Entonces vi tu sonrisa y supe que queria verla el resto de mi vida"
+                </p>
+                <p class="signature">- Valen </p>
+                
+                <button id="show-game-button" class="action-button" style="margin-top: 30px;">
+                    ¡Tengo un regalo extra para vos!
+                </button>
+            </div>
+        </div>
+
+        <div id="game-section" class="hidden-section"> 
+            <h2>¿Quieres un regalo extra? ¡Encuentra el Corazón!</h2>
+            <div id="game-grid">
+                </div>
+            <p id="game-message"></p>
+            <button id="reset-button" class="action-button" style="display:none;">Volver a Jugar</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
